@@ -9,7 +9,7 @@ def enter_staff_info(StaffID, StoreID, Name, JobTitle, Phone, Email, EmploymentD
     try:
         cursor = conn.cursor()
         query = """
-        INSERT INTO Staff (StaffID, StoreID, Name, JobTitle, Phone, Email, EmploymentDuration, Age, Address)
+        INSERT INTO StaffMembers (StaffID, StoreID, Name, JobTitle, Phone, Email, EmploymentDuration, Age, Address)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         cursor.execute(query, (StaffID, StoreID, Name, JobTitle, Phone, Email, EmploymentDuration, Age, Address))
@@ -101,7 +101,7 @@ def delete_staff_info(StaffID):
             cursor.execute(f"DELETE FROM {table} WHERE StaffID = %s", (StaffID,))
 
         # Delete from Staff
-        cursor.execute("DELETE FROM Staff WHERE StaffID = %s", (StaffID,))
+        cursor.execute("DELETE FROM StaffMembers WHERE StaffID = %s", (StaffID,))
         conn.commit()
         print("Staff deleted successfully.")
     except Exception as e:
